@@ -1,0 +1,66 @@
+cff-version: 1.2.0
+message: "If you use STAMP-2.5D in your research, please cite the ICCD 2025 paper."
+title: "STAMP-2.5D: Structural and Thermal Aware Methodology for Placement in 2.5D Integration"
+authors:
+  - family-names: Parekh
+    given-names: Varun Darshana
+    affiliation: The Pennsylvania State University
+    website: https://www.parekhvarun.com/
+  - family-names: Hazenstab
+    given-names: Zachary Wyatt
+    affiliation: The Pennsylvania State University
+  - family-names: Srinivasa
+    given-names: Srivatsa Rangachar
+    affiliation: Intel Corporation
+  - family-names: Chakrabarty
+    given-names: Krishnendu
+    affiliation: Arizona State University
+  - family-names: Ni
+    given-names: Kai
+    affiliation: University of Notre Dame
+  - family-names: Narayanan
+    given-names: Vijaykrishnan
+    affiliation: The Pennsylvania State University
+type: software
+license: MIT
+repository-code: "https://github.com/MicroSystemsDesignLab/STAMP2.5D"
+url: "https://github.com/MicroSystemsDesignLab/STAMP2.5D"
+keywords:
+  - chiplet
+  - 2.5D integration
+  - thermal-aware floorplanning
+  - mechanical stress
+  - von Mises stress
+  - silicon interposer
+  - heterogeneous integration
+  - advanced packaging
+  - simulated annealing
+  - ANSYS
+  - finite element analysis
+  - EDA
+  - design automation
+  - VLSI
+preferred-citation:
+  type: conference-paper
+  title: "STAMP-2.5D: Structural and Thermal Aware Methodology for Placement in 2.5D Integration"
+  authors:
+    - family-names: Parekh
+      given-names: Varun Darshana
+    - family-names: Hazenstab
+      given-names: Zachary Wyatt
+    - family-names: Srinivasa
+      given-names: Srivatsa Rangachar
+    - family-names: Chakrabarty
+      given-names: Krishnendu
+    - family-names: Ni
+      given-names: Kai
+    - family-names: Narayanan
+      given-names: Vijaykrishnan
+  collection-title: "Proceedings of the IEEE International Conference on Computer Design (ICCD)"
+  year: 2025
+  doi: "10.1109/ICCD.2025.11311107"
+  url: "https://ieeexplore.ieee.org/document/11311107"
+identifiers:
+  - type: other
+    value: "arXiv:2504.21140"
+    description: arXiv preprint

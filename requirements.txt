@@ -1,0 +1,29 @@
+# STAMP-2.5D Python dependencies.
+# Tested with Python 3.9-3.11. ANSYS Mechanical 2024 R1+ must be installed
+# separately on the local Windows machine — see docs/CONFIGURATION.md.
+
+# Web service layer (local Flask server <-> remote connector over SSH tunnel)
+flask>=2.3,<4.0
+requests>=2.31
+
+# Numerical / data
+numpy>=1.24,<3.0
+pandas>=2.0
+scipy>=1.10
+
+# Visualization (used by gradient_analysis.py and the notebooks)
+matplotlib>=3.7
+seaborn>=0.12
+
+# ANSYS Python ecosystem (required at runtime on the local Windows machine).
+# Pinned loosely; PyAnsys versions are tied to your installed ANSYS release.
+ansys-aedt-core>=0.10
+ansys-mechanical-core>=0.11
+
+# MILP solver for wirelength optimization (adapted from TAP-2.5D)
+# pulp is the typical choice; ortools is an alternative if you prefer.
+pulp>=2.7
+
+# Notebook tooling (optional, only if you run the .ipynb files)
+jupyter>=1.0
+ipykernel>=6.25

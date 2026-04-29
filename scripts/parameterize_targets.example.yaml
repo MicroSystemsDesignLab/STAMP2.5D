@@ -1,0 +1,38 @@
+# scripts/parameterize_targets.example.yaml
+#
+# Copy this file to `parameterize_targets.local.yaml` (which is git-ignored)
+# and fill in your own values. Each entry under `replacements:` is a literal
+# old-string → new-string pair. Order matters: list longest / most-specific
+# patterns first so they match before shorter ones.
+#
+# The values below are illustrative ONLY — replace them with your own.
+#
+# DO NOT commit `parameterize_targets.local.yaml`.
+
+replacements:
+  # 1. Long absolute paths first so they win the substring match
+  - from: 'C:\Users\YOURNAME\Documents\YOURPROJECT'
+    to:   '<path_to_your_repo>\data'
+  - from: 'C:\Users\YOURNAME\OneDrive - Your Organization'
+    to:   '<path_to_your_workspace>'
+
+  # 2. Hostnames + identifiers
+  - from: 'your.compute.host.example.edu'
+    to:   '<your_remote_hostname>'
+  - from: 'lab-room-id'
+    to:   '<your_machine_id>'
+
+  # 3. Bare usernames last (they would otherwise match inside paths)
+  - from: 'YOURNAME'
+    to:   '<your_username>'
+
+# Files to scrub (paths relative to repo root)
+targets:
+  - src/architectures/ascend910/server_temp_stress.py
+  - src/architectures/ascend910/server_temponly.py
+  - src/architectures/multigpu/server_temp_stress.py
+  - src/architectures/multigpu/server_temponly.py
+  - src/architectures/micro150/server_temp_stress.py
+  - src/architectures/micro150/server_temponly.py
+  - src/connector/thermal_connector.py
+  - src/analysis/gradient_analysis.py

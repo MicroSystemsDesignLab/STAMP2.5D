@@ -1,0 +1,61 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.Python
+.eggs/
+build/
+dist/
+
+# --- Virtual environments ---
+venv/
+env/
+.venv/
+islped/
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- ANSYS / FEA artifacts (these are large; keep on local disk or push to Zenodo) ---
+*.mechdb
+*.mechdat
+*.pmdb
+*_Mech_Files/
+*Result_Mech_Files/
+results_Mech_Files/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Logs / temp output ---
+*.log
+*.tmp
+ansys_temp_stress/
+ansys_export/
+input/
+target/
+target_ts_temp/
+target_ts_stress/
+input_temp_stress/
+geometry_export.step
+
+# --- Large result archives — keep these on Zenodo, not git ---
+gradient_results.zip
+gradient_results/
+csv_test_dataset/
+hotspot_test_dir/
+
+# --- Personal scratch / placeholder files that should never be committed ---
+"Remote Server.txt"
+*.bak
+
+# --- Local-only parameterization config (contains real personal paths) ---
+scripts/parameterize_targets.local.yaml
