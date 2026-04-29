@@ -76,7 +76,7 @@ The companion gradient analysis (Section IV-B of the paper, Table III) shows tha
 └── README.md
 ```
 
-## How it works (one diagram in two layers)
+## How it works
 
 STAMP-2.5D runs as a **client–server pair**. The optimizer (Simulated Annealing on a B\*-tree representation) lives on a remote Linux server; ANSYS Mechanical lives on a local Windows workstation under a desktop license. They talk over an SSH reverse tunnel.
 
@@ -171,12 +171,6 @@ A machine-readable [`CITATION.cff`](CITATION.cff) is provided so GitHub renders 
 - **Vijaykrishnan Narayanan**¹
 
 ¹ The Pennsylvania State University ² Intel ³ Arizona State University ⁴ University of Notre Dame
-
-## Related work from the Microsystems Design Lab
-
-- **ThermLeT** — Thermal-aware ferroelectric chiplet placement *(repo / paper link to be added)*
-- [Microsystems Design Lab @ Penn State](https://sites.psu.edu/microsystemsdesignlab/)
-- [TAP-2.5D](https://github.com/bu-icsg/TAP-2.5D) — Boston University's prior thermally-aware-only baseline; the wirelength MILP formulation in this repo is adapted from it.
 
 ## Acknowledgements
 
