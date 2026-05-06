@@ -1,3 +1,5 @@
+[← Back to STAMP-2.5D home](index.md)
+
 # Architecture
 
 STAMP-2.5D is split across two machines for one practical reason: ANSYS Mechanical desktop licenses are tied to a specific Windows host, while the optimizer benefits from running on dedicated compute. The split is also reflected in the file layout (`src/architectures/...` is local-side, `src/connector/...` is remote-side).

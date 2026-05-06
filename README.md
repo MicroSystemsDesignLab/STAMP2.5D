@@ -3,7 +3,7 @@
 
 [![Paper](https://img.shields.io/badge/paper-ICCD%202025-blue)](https://ieeexplore.ieee.org/document/11311107)
 [![arXiv](https://img.shields.io/badge/arXiv-2504.21140-b31b1b)](https://arxiv.org/abs/2504.21140)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
 [![ANSYS](https://img.shields.io/badge/ansys-2024%20R1%2B-orange)](https://www.ansys.com/)
 
@@ -46,32 +46,55 @@ The companion gradient analysis (Section IV-B of the paper, Table III) shows tha
 ```
 .
 ├── src/
-│   ├── architectures/
-│   │   ├── ascend910/        # Huawei Ascend 910 (45 mm interposer, 580 W/m²·K)
-│   │   ├── multigpu/         # Multi-GPU package (50 mm interposer, 950 W/m²·K)
-│   │   └── micro150/         # Micro150 disintegrated CPU (50 mm interposer, 720 W/m²·K)
-│   │      └── server_temp_stress.py   # WST objective (full multi-physics)
-│   │      └── server_temponly.py      # WT  objective (thermal-only baseline)
-│   ├── connector/
-│   │   └── thermal_connector.py       # Remote-side client; POSTs power maps over SSH tunnel
+│   ├── optimizer/                     # ← B*-tree + Fast SA + MILP wirelength (the paper's contribution)
+│   │   ├── bstree.py                  #   B*-tree placement representation
+│   │   ├── fastSA.py                  #   Fast Simulated Annealing inner loop
+│   │   ├── sim_annealing.py           #   Main SA driver (WT, WS, WST cost functions)
+│   │   ├── init_placement.py          #   Initial placement generator
+│   │   ├── system.py                  #   System_25D base class
+│   │   ├── passive_interposer.py      #   Passive-interposer subclass
+│   │   ├── block_occupation.py        #   Grid-occupation helper
+│   │   ├── config.py                  #   Config-file loader
+│   │   ├── routing.py                 #   MILP wirelength solver (CPLEX)
+│   │   ├── routing_maxL.py            #   Variant — max-length constraint
+│   │   ├── thermal_connector.py       #   HTTP client → local ANSYS server
+│   │   ├── thermal_mechanical_stress.py  # STAMP-2.5D contribution: ANSYS-side wrapper
+│   │   └── util/                      #   fill_space, hotspot.config, Perl post-processors
+│   ├── architectures/                 # ← Local-side ANSYS Flask servers
+│   │   ├── ascend910/                 #   Huawei Ascend 910 (45 mm interposer, 580 W/m²·K)
+│   │   ├── multigpu/                  #   Multi-GPU package (50 mm interposer, 950 W/m²·K)
+│   │   └── micro150/                  #   Micro150 disintegrated CPU (50 mm interposer, 720 W/m²·K)
+│   │       ├── server_temp_stress.py  #   WST objective (full multi-physics)
+│   │       └── server_temponly.py     #   WT  objective (thermal-only baseline)
 │   └── analysis/
 │       └── gradient_analysis.py       # Reproduces Section IV-B (gradient–stress correlation)
+├── configs/                           # Per-architecture experiment configs (used by sim_annealing.py)
+│   ├── sys_ascend910.cfg              #   WT  cost function
+│   ├── sys_ascend910_wl_stress.cfg    #   WS / WST cost functions
+│   ├── sys_micro150.cfg
+│   ├── sys_micro150_wl_stress.cfg
+│   ├── sys_multigpu.cfg
+│   └── sys_multigpu_wl_stress.cfg
 ├── data/
-│   └── Final_Materials.xml            # ANSYS engineering-data library used in all simulations
+│   ├── Final_Materials.xml            # ANSYS engineering data — local-side servers
+│   └── Material_Data_all.xml          # ANSYS engineering data — thermal_mechanical_stress.py
 ├── notebooks/
-│   ├── geometry_generation.ipynb      # Builds the 2.5D stack STEP geometry
-│   └── installation.ipynb             # Environment setup walkthrough
+│   ├── geometry_generation.ipynb
+│   └── installation.ipynb
 ├── results/
 │   └── paper_figures/                 # Figures + per-arch metrics CSVs from the paper
 ├── sensitivity_study/                 # Section IV-C: intra-chiplet power-density study
 ├── docs/
-│   ├── ARCHITECTURE.md                # Local ↔ remote tunnel setup
+│   ├── index.md                       # GitHub Pages landing page
+│   ├── ARCHITECTURE.md                # Local ↔ remote split + tunnel setup
 │   ├── CONFIGURATION.md               # All `<placeholder>` values explained
-│   └── REPRODUCING_RESULTS.md         # Per-architecture how-to
+│   └── REPRODUCING_RESULTS.md         # Per-architecture how-to (uses configs/*.cfg)
 ├── scripts/
-│   └── parameterize.py                # Idempotent placeholder substitution helper
+│   ├── parameterize.py                # Idempotent placeholder substitution helper
+│   └── clean_notebooks.py             # Strip cell outputs + apply substitutions
 ├── CITATION.cff
-├── LICENSE                            # MIT
+├── LICENSE                            # Apache 2.0
+├── NOTICE                             # TAP-2.5D attribution per Apache 2.0 §4(b)
 ├── requirements.txt
 └── README.md
 ```
@@ -178,9 +201,11 @@ A machine-readable [`CITATION.cff`](CITATION.cff) is provided so GitHub renders 
 
 We gratefully acknowledge SRC and the PRISM Center for their support of this research, and the [Microsystems Design Lab at Penn State](https://sites.psu.edu/microsystemsdesignlab/) for hosting the work.
 
-## License
+## License and attribution
 
-MIT — see [`LICENSE`](LICENSE).
+Licensed under the **Apache License, Version 2.0** — see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE).
+
+The placement-optimization subsystem under `src/optimizer/` is **derived from [TAP-2.5D](https://github.com/bu-icsg/TAP-2.5D)** by Yenai Ma, Leila Delshadtehrani, Cansu Demirkiran, José Luis Abellán, and Ajay Joshi (Boston University, 2021), used and redistributed under the Apache 2.0 license. The STAMP-2.5D authors added structural (von Mises stress) co-optimization, ANSYS-based finite-element evaluation, and the multi-physics adaptive cost function described in the ICCD 2025 paper. Per Apache 2.0 §4(b), modified files are marked accordingly. See [`NOTICE`](NOTICE) for the full attribution.
 
 ## Keywords
 

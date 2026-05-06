@@ -1,3 +1,5 @@
+[← Back to STAMP-2.5D home](index.md)
+
 # Configuration
 
 Every user-specific value in STAMP-2.5D's source files is marked with one of the placeholders below. Search-and-replace each one with your local equivalent before running.
@@ -18,6 +20,8 @@ A helper script (`scripts/parameterize.py`) is provided to *reverse* this — it
 
 After cloning, the following files contain placeholders you must replace before running:
 
+### Local-side ANSYS Flask servers
+
 | File | Placeholders inside |
 |---|---|
 | `src/architectures/ascend910/server_temp_stress.py` | `<path_to_your_workspace>`, `<path_to_your_repo>` |
@@ -26,7 +30,15 @@ After cloning, the following files contain placeholders you must replace before 
 | `src/architectures/multigpu/server_temponly.py`     | `<path_to_your_workspace>`, `<path_to_your_repo>` |
 | `src/architectures/micro150/server_temp_stress.py`  | `<path_to_your_workspace>`, `<path_to_your_repo>` |
 | `src/architectures/micro150/server_temponly.py`     | `<path_to_your_workspace>`, `<path_to_your_repo>` |
-| `src/connector/thermal_connector.py` | None at present (target URL is `localhost:<TUNNEL_PORT>`) |
+
+### Optimizer side
+
+| File | Placeholders inside |
+|---|---|
+| `src/optimizer/thermal_mechanical_stress.py` | `<path_to_your_workspace>` (5 occurrences) |
+| `src/optimizer/thermal_connector.py` | None at present (target URL is `localhost:<TUNNEL_PORT>`) |
+| `src/optimizer/sim_annealing.py` and friends | None directly — but they read `configs/sys_*.cfg`, see below |
+| `configs/sys_*.cfg` (6 files) | `<path_to_your_workspace>` in the `[general] path = ...` line |
 
 The notebooks under `notebooks/` may also contain leftover absolute paths from the original development environment — open each cell and adjust before running.
 

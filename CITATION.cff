@@ -22,7 +22,7 @@ authors:
     given-names: Vijaykrishnan
     affiliation: The Pennsylvania State University
 type: software
-license: MIT
+license: Apache-2.0
 repository-code: "https://github.com/MicroSystemsDesignLab/STAMP2.5D"
 url: "https://github.com/MicroSystemsDesignLab/STAMP2.5D"
 keywords:

@@ -1,0 +1,25 @@
+STAMP-2.5D
+Copyright 2025 The Pennsylvania State University, Microsystems Design Lab,
+              and STAMP-2.5D contributors
+
+This product includes software developed at:
+  Microsystems Design Lab, The Pennsylvania State University
+  https://sites.psu.edu/microsystemsdesignlab/
+
+Portions of the placement-optimization subsystem (under src/optimizer/) are
+derived from TAP-2.5D, originally developed by the Boston University
+Integrated Circuits and Systems Group:
+
+  TAP-2.5D: Thermally-Aware Chiplet Placement Methodology for 2.5D Systems
+  Yenai Ma, Leila Delshadtehrani, Cansu Demirkiran, José Luis Abellán,
+    and Ajay Joshi
+  Boston University, 2021
+  https://github.com/bu-icsg/TAP-2.5D
+
+  Licensed under the Apache License, Version 2.0.
+  See LICENSE file in the root of this repository for the full text.
+
+The TAP-2.5D-derived files have been modified by the STAMP-2.5D authors
+to add structural (von Mises stress) co-optimization, ANSYS-based
+finite-element evaluation, and the multi-physics adaptive cost function
+described in the STAMP-2.5D ICCD 2025 paper.

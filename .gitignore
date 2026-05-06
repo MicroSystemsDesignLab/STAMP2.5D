@@ -59,3 +59,6 @@ hotspot_test_dir/
 
 # --- Local-only parameterization config (contains real personal paths) ---
 scripts/parameterize_targets.local.yaml
+
+# --- Lab-server source workspace (kept local; copied from into src/optimizer/) ---
+mdlserver/

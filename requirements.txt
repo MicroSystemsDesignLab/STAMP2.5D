@@ -20,9 +20,13 @@ seaborn>=0.12
 ansys-aedt-core>=0.10
 ansys-mechanical-core>=0.11
 
-# MILP solver for wirelength optimization (adapted from TAP-2.5D)
-# pulp is the typical choice; ortools is an alternative if you prefer.
-pulp>=2.7
+# MILP solver for wirelength optimization (src/optimizer/routing.py)
+# CPLEX is proprietary but free for academic use; install separately:
+#   pip install cplex
+# Or use IBM's installer; the `cplex` Python module needs a CPLEX runtime.
+# A pure-Python alternative such as `pulp` can be substituted by editing
+# routing.py if a CPLEX license is unavailable.
+# cplex>=22.1   # uncomment after installing CPLEX
 
 # Notebook tooling (optional, only if you run the .ipynb files)
 jupyter>=1.0

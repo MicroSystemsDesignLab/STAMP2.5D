@@ -1,0 +1,41 @@
+# GitHub Pages site configuration for STAMP-2.5D.
+# Renders docs/*.md as a static Jekyll site at:
+#   https://microsystemsdesignlab.github.io/STAMP2.5D/
+
+title: "STAMP-2.5D"
+description: "Structural and Thermal Aware Methodology for Placement in 2.5D Chiplet Integration · ICCD 2025"
+url: "https://microsystemsdesignlab.github.io"
+baseurl: "/STAMP2.5D"
+
+# Clean built-in theme — switch to jekyll-theme-minimal or jekyll-theme-slate
+# if you prefer a different look.
+theme: jekyll-theme-cayman
+
+# Author / SEO metadata for jekyll-seo-tag.
+author: "Microsystems Design Lab, Penn State"
+twitter:
+  username: ""
+  card: summary
+social:
+  name: "STAMP-2.5D"
+  links:
+    - "https://github.com/MicroSystemsDesignLab/STAMP2.5D"
+    - "https://arxiv.org/abs/2504.21140"
+
+# Open Graph image — uses one of the paper figures we already ship.
+# (GitHub Pages will serve everything under docs/ at the site root.)
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Don't render these as site pages.
+exclude:
+  - "*.tmp"
+  - "node_modules"
+
+# Markdown processor settings — match GitHub-Flavored Markdown so the docs
+# render the same on GitHub and on Pages.
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
